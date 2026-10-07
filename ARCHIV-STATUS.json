@@ -1,0 +1,14 @@
+{
+  "old_video_source": "Original published metadata 08-searxng-evo/02-BESCHREIBUNG.txt",
+  "archived_search_date": "2026-09-22",
+  "archived_results_reported": 27,
+  "archived_first_result_reported": "official SearXNG Search API documentation",
+  "archived_engine_warnings_reported": [
+    "DuckDuckGo CAPTCHA",
+    "Startpage CAPTCHA"
+  ],
+  "raw_response_rediscovered": false,
+  "fresh_search_performed": false,
+  "new_complete_agent_run": false,
+  "instruction": "Do not present old published findings as a new benchmark or as a freshly inspected raw response."
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "searxng": {
+      "command": "C:/YOUR/NODE/node.exe",
+      "args": [
+        "C:/YOUR/ADAPTER/node_modules/mcp-searxng/dist/cli.js"
+      ],
+      "env": {
+        "SEARXNG_URL": "http://127.0.0.1:8080"
+      }
+    }
+  }
+}
