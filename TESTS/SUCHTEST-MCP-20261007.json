@@ -1,0 +1,129 @@
+{
+  "checked_utc": "2026-10-07 07:40:57 UTC",
+  "tool": "mcp__searxng__searxng_web_search",
+  "arguments": {
+    "query": "site:docs.searxng.org search api",
+    "num_results": 3,
+    "response_format": "json",
+    "result_detail": "full"
+  },
+  "scope": "Current existing Codex MCP connector; no fresh installation, no OpenCode connection test, no direct HTTP helper execution.",
+  "actual_response": {
+    "query": "site:docs.searxng.org search api",
+    "results": [
+      {
+        "url": "https://search.ch/",
+        "title": "Die Schweizer Suchmaschine - search.ch",
+        "content": "Die Schweizer Suchmaschine bietet Telefonbuch, Wetter, Karten, Routenplaner, TV-Programm und mehr für eine einfache und …",
+        "engine": "bing",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "search.ch",
+          "/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "bing"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1,
+        "category": "general",
+        "publishedDate": null,
+        "iframe_src": null
+      },
+      {
+        "url": "https://www.google.com/",
+        "title": "Google",
+        "content": "Search the world's information, including webpages, images, videos and more. Google has many special features to help you find …",
+        "engine": "bing",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.google.com",
+          "/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "bing"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "publishedDate": null,
+        "iframe_src": null
+      },
+      {
+        "url": "https://ipv4.google.com/?hl=de",
+        "title": "Google",
+        "content": "Google bietet eine Vielzahl von Diensten und Informationen, die auf Ihre Bedürfnisse zugeschnitten sind.",
+        "engine": "bing",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "ipv4.google.com",
+          "/",
+          "",
+          "hl=de",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "bing"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "publishedDate": null,
+        "iframe_src": null
+      }
+    ],
+    "answers": [],
+    "corrections": [],
+    "infoboxes": [],
+    "suggestions": [],
+    "unresponsive_engines": [
+      [
+        "brave",
+        "too many requests"
+      ],
+      [
+        "duckduckgo",
+        "CAPTCHA"
+      ],
+      [
+        "qwant",
+        "CAPTCHA"
+      ],
+      [
+        "startpage",
+        "parsing error"
+      ]
+    ]
+  },
+  "tool_call_completed": true,
+  "retrieved_results": 3,
+  "matching_requested_domain": 0,
+  "source_goal_passed": false,
+  "new_model_load": false,
+  "downloads": false,
+  "limitations": "All three returned results are outside docs.searxng.org. A top score of 1 does not establish relevance or truth. Four engines reported limitations. No engine protection bypass attempted."
+}
