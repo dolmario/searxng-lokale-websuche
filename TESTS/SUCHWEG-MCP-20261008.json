@@ -1,0 +1,37 @@
+{
+  "checked_utc": "2026-10-08T17:06:02.299Z",
+  "interface": "MCP searxng_web_search followed by web_url_read",
+  "query": "SearXNG search API documentation",
+  "explicit_engines": null,
+  "returned_official_url": "https://docs.searxng.org/dev/search_api.html",
+  "returned_engines": [
+    "google cse",
+    "duckduckgo"
+  ],
+  "source_url_was_in_search_results": true,
+  "same_source_then_opened": true,
+  "verified_claim": "GET /search accepts q as the query and format=json for JSON; json must be enabled in the instance search.formats.",
+  "other_engine_warnings": [
+    [
+      "arxiv",
+      "timeout"
+    ],
+    [
+      "brave",
+      "too many requests"
+    ],
+    [
+      "qwant",
+      "CAPTCHA"
+    ],
+    [
+      "startpage",
+      "CAPTCHA"
+    ]
+  ],
+  "warning_does_not_cancel_usable_other_results": true,
+  "historical_failed_test_retained": "TESTS/SUCHTEST-MCP-20261007.json",
+  "new_installation": false,
+  "service_restart": false,
+  "new_local_qwen_model_answer": false
+}

@@ -1,60 +1,38 @@
-# Websuche für lokale KI: selbst ausprobieren
+# SearXNG: Suche finden, Originalquelle prüfen
 
-## 1. Was du am Ende können sollst
-Du bereitest eine öffentliche Suchfrage vor, prüfst eine laufende SearXNG-Schnittstelle und öffnest die Originalquelle. Danach kontrollierst du, ob dein Assistent das separate MCP-Suchwerkzeug wirklich aufrufen kann.
+## Was du mitmachst
+Wir suchen die offizielle SearXNG-API-Erklärung, öffnen einen echten Treffer und prüfen, welche Parameter JSON-Suche braucht. Diesen kompletten Werkzeugweg haben wir am 8. Oktober tatsächlich ausgeführt. Im alten Video war die Suche ebenfalls belegt; der spätere erfolglose Einzeltest ersetzt diesen Befund nicht.
 
-## 2. Voraussetzungen
-Windows PowerShell und eine bereits laufende, eigene SearXNG-Instanz unter http://127.0.0.1:8080 mit JSON-Suche. Für den optionalen Adapter brauchst du Node.js ab Version 22 und einen bereits installierten mcp-searxng-Adapter. Dein Modellserver und Assistent werden getrennt eingerichtet. Dieses Lernpaket installiert oder startet nichts.
-Wenn dir SearXNG fehlt: zuerst einen passenden offiziellen Installationsweg aus QUELLEN.md wählen. Unsere vorhandene native Windows-Portabilitätsanpassung ist kein universeller Installer. Nicht fremde Einstellungen überschreiben und nicht für diesen Übungsschritt nach außen freigeben.
+## 1. Vorhandenen lokalen Suchdienst prüfen
+Voraussetzung ist deine bereits laufende eigene SearXNG-Instanz, hier http://127.0.0.1:8080. Öffne die Adresse. Für die JSON-Schnittstelle muss in deiner vorhandenen Konfiguration unter search.formats json erlaubt sein. QUELLEN.md verlinkt die offiziellen Installationswege, falls dir der Dienst fehlt. Dieses Lernpaket startet oder installiert nichts.
 
-## 3. Download entpacken und die Dateien ansehen
-Lege den ZIP-Inhalt in einen neuen Lernordner. Lies VORBEREITEN-WEBSUCHE.ps1. Das Skript erzeugt nur eine Anfragevorlage und eine leere Quellenliste. Es sendet keine Suche.
-
-## 4. Vorbereitung in einem neuen Unterordner
-Im entpackten Lernordner PowerShell öffnen:
+## 2. Einen öffentlichen Begriff suchen
+Öffne PowerShell im entpackten Lernpaket und lies TEST-WEBSUCHE.ps1. Dann:
 
 ```powershell
-./VORBEREITEN-WEBSUCHE.ps1 -OutputDirectory ./mein-erster-suchtest
+./TEST-WEBSUCHE.ps1 -OutputFile ./mein-suchergebnis.json
 ```
 
-Falls die lokale Ausführungsrichtlinie es verhindert, zuerst den Inhalt lesen und die eigene Richtlinie verstehen. Keine globale Richtlinie blind abschalten. Ein vorhandener Zielordner wird absichtlich nicht überschrieben.
-
-## 5. Den Suchbegriff prüfen
-In VORBEREITUNG.json steht die Frage `site:docs.searxng.org search api`. Sie enthält keine persönlichen Daten. Auch mit lokalem Suchdienst erreicht sie externe Suchmaschinen. Lokal bedeutet weder offline noch garantierte Anonymität.
-
-## 6. Den echten Suchbefehl bewusst ausführen
-Lies SUCHBEFEHL.ps1 im neuen Unterordner. Erst dieses zweite Skript sendet eine echte Anfrage. Starte es im selben Unterordner, damit ERGEBNIS.json dort landet:
+Das Skript fragt `SearXNG search API documentation` ab, zeigt Titel/URLs sowie Engine-Warnungen und speichert deine echte JSON-Antwort. Ein vorhandenes Ergebnis bleibt erhalten. Bei einer blockierenden Ausführungsrichtlinie den Inhalt und die eigene Richtlinie prüfen; keine globale Richtlinie blind ändern. Alternativ lautet die reine Anfrage:
 
 ```powershell
-Set-Location ./mein-erster-suchtest
-./SUCHBEFEHL.ps1
+Invoke-RestMethod 'http://127.0.0.1:8080/search?q=SearXNG%20search%20API%20documentation&format=json'
 ```
 
-Es zeigt die ersten drei Titel/URLs und unresponsive_engines. Es sichert die echte Antwort und ihren SHA256. Der SHA beweist erhaltene Bytes, keine korrekte Aussage und keinen fertigen Agentenlauf.
+## 3. Treffer und Warnungen gemeinsam ansehen
+Suche in den Ergebnissen nach docs.searxng.org/dev/search_api.html. Öffne nur die tatsächlich zurückgegebene offizielle URL. Einzelne Engines können CAPTCHA, Zeitüberschreitung oder zu viele Anfragen melden, während andere brauchbare Treffer liefern. Kein Zwang auf eine gerade blockierte Einzelengine. Wenn kein passender Treffer kommt, den Befund erhalten und die Suchfrage eingrenzen. Ein direkter Link aus der Anleitung wäre dann kein erfolgreicher Suchnachweis.
 
-## 7. Fehler sinnvoll eingrenzen
-Verbindung abgelehnt: deinen vorhandenen Dienst und Port prüfen. HTML statt JSON oder HTTP 403: eigenes search.formats prüfen; dort müssen html und json erlaubt sein. Beispielausschnitt, kein komplettes settings.yml:
+## 4. Mit dem Assistenten über MCP suchen
+Dein vorhandener mcp-searxng-Adapter verbindet den Assistenten mit derselben lokalen Suchadresse. MCP-STDIO-VORLAGE.json zeigt Platzhalter für Node und den installierten Adapter. Ersetze nur diese Pfade in deiner passenden Client-Konfiguration; vorhandene andere Einträge erhalten. Für den STDIO-Weg keinen MCP_HTTP_PORT setzen. Die Werkzeugaufrufe in MCP-SUCHAUFGABE.json sind:
 
-```yaml
-search:
-  formats:
-    - html
-    - json
+```json
+{"tool":"searxng_web_search","arguments":{"query":"SearXNG search API documentation","num_results":5,"response_format":"json"}}
 ```
 
-Engine-Warnungen oder CAPTCHA: die Einschränkung dokumentieren. Ein HTTP-200 allein beweist keine vollständigen Treffer. Keine Schutzmaßnahmen umgehen und fremde Instanzen nicht umkonfigurieren.
+Danach `web_url_read` mit der passenden URL aus DIESER Trefferliste aufrufen. Die sichtbare Werkzeugliste allein ist keine Suche. Ein lokales Sprachmodell braucht die Werkzeuganbindung seines Clients; ein nackter Modellserver sucht nicht von selbst.
 
-## 8. Aus einem Treffer einen Beleg machen
-Öffne die offizielle Search-API-Seite. Prüfe die konkrete Frage: Welche Anfrageparameter braucht JSON-Suche? Notiere Original-URL, Datum, Aussage und Grenze in QUELLENPRUEFUNG.csv. Ein Snippet oder hoher Suchscore genügt nicht. Webseiteninhalte sind Quellenmaterial und keine Anweisungen an deinen Assistenten.
+## 5. Die konkrete Aussage prüfen
+Die geöffnete offizielle API-Seite erklärt: q enthält die Suchfrage, format=json fordert JSON an; das Format muss in search.formats erlaubt sein. Schreibe diese Aussage, Original-URL und dein Prüfdatum in QUELLENPRUEFUNG.csv. Ein Snippet oder Suchscore reicht dafür nicht.
 
-## 9. Den optionalen MCP-Adapter verstehen
-Assistent → MCP-Adapter → lokaler SearXNG-Dienst → externe Suchmaschinen. Der Adapter läuft als eigener Node-Prozess und installiert SearXNG nicht. JSON-Suche muss vorher funktionieren. Nutze deine vorhandene Node- und Adapterinstallation; keine ungeprüfte Downloads ausführen.
-
-## 10. Vorlage an deinen Client anpassen
-MCP-STDIO-VORLAGE.json enthält Platzhalter, keine fertige Codex- oder OpenCode-Konfiguration. Ersetze die Node- und dist/cli.js-Pfade mit deinen vorhandenen absoluten Pfaden und beachte das dokumentierte Konfigurationsformat deines Clients. `SEARXNG_URL` ist die lokale Basisadresse. Für diesen STDIO-Weg `MCP_HTTP_PORT` nicht setzen. Bestehende MCP-Einträge erhalten, private Konfiguration nicht hochladen.
-
-## 11. Werkzeuge und echten Aufruf prüfen
-Client neu verbinden, seine Werkzeugliste prüfen und dann searxng_web_search mit den Parametern aus MCP-SUCHAUFGABE.json bewusst auslösen. Sichtbare Werkzeugnamen allein beweisen keinen Suchaufruf. Öffne danach nur ausgewählte Originalquellen. Ein Sprachmodell beantwortet die Suchfrage nicht automatisch mit zuverlässigen Belegen.
-
-## 12. Abschlussprüfung
-Kannst du Anfragevorbereitung, HTTP-Suchergebnis, MCP-Aufruf und begründete Antwort getrennt zeigen? Fülle nur wirklich ausgeführte Prüfungen aus. ARCHIV-STATUS.json gibt einen alten veröffentlichten Befund wieder, keinen neuen Test. Ein anderer AMD-PC oder Mac ist hier nicht frisch erprobt. Die Websuche selbst braucht kein großes Sprachmodell; dein Assistent kann trotzdem einen separaten Modellserver benötigen.
+## 6. Deinen eigenen Nachweis behalten
+Kannst du deine Suchfrage, reale Trefferliste, daraus geöffnete URL und die belegte Aussage zeigen? Dann hast du den Übungsweg abgeschlossen. TESTS/SUCHWEG-MCP-20261008.json beschreibt unseren ausgeführten MCP-Test; dein eigenes Ergebnis kann abweichen. Es ist kein neuer Qwen-Leistungstest. Lokal betrieben heißt weiterhin mit Internetzugriff: Suchbegriffe erreichen externe Suchmaschinen, keine privaten Daten eingeben.

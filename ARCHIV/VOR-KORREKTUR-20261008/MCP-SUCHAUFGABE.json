@@ -1,0 +1,6 @@
+{
+  "tool": "searxng_web_search",
+  "arguments": {
+    "query": "site:docs.searxng.org search api"
+  }
+}

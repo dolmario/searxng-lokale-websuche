@@ -1,60 +1,38 @@
-# Add web search to local AI: beginner practice
+# SearXNG: find a result and check its original source
 
-## 1. Goal
-Prepare a public query, manually test an existing local SearXNG JSON endpoint and inspect an original source. Then check whether your assistant can actually call a separately installed MCP search adapter.
+## The practical task
+Find the official SearXNG Search API page, open a real returned result and check the parameters needed for JSON search. The assistant actually completed this tool chain on 8 October 2026. The old video also had search evidence; a later unsuccessful isolated test did not invalidate it.
 
-## 2. Requirements
-Windows PowerShell and your already running SearXNG service at http://127.0.0.1:8080 with JSON search enabled. The optional adapter needs Node.js 22 or later and an existing mcp-searxng installation. Your assistant and model server are separate. This practice kit installs and starts nothing.
-If SearXNG is missing, choose a suitable official deployment method linked in QUELLEN.md first. The author's native Windows portability changes are not a universal installer. Keep existing settings and keep this exercise bound to loopback.
+## 1. Check your existing local service
+Use your own already running SearXNG instance, here http://127.0.0.1:8080. JSON must be enabled under search.formats in your own configuration. QUELLEN.md links official deployment instructions if the service is missing. This practice kit does not install or start services or models.
 
-## 3. Unzip and inspect
-Extract into a new practice directory. Read VORBEREITEN-WEBSUCHE.ps1. It only writes a request template and a blank source-check file; it makes no search request.
-
-## 4. Prepare a new subdirectory
-Open PowerShell in the extracted practice directory:
+## 2. Search for a public topic
+Read TEST-WEBSUCHE.ps1 in the extracted kit, then run:
 
 ```powershell
-./VORBEREITEN-WEBSUCHE.ps1 -OutputDirectory ./my-first-search
+./TEST-WEBSUCHE.ps1 -OutputFile ./my-search-result.json
 ```
 
-If execution policy blocks the script, inspect it and understand your local policy first; do not blindly disable a global policy. Existing output directories are deliberately preserved.
-
-## 5. Review the query
-VORBEREITUNG.json records `site:docs.searxng.org search api`. It contains no private data. Your local search service still passes the query to external search engines. Local does not mean offline or guaranteed anonymous.
-
-## 6. Deliberately run the actual request
-Read SUCHBEFEHL.ps1 in the newly prepared subdirectory. Only this second script makes a search request. Run it from that directory:
+The query is `SearXNG search API documentation`. The script shows result titles/URLs and engine warnings, then preserves the actual JSON response. It never overwrites an existing result. If execution policy blocks it, inspect the script and understand your own policy rather than blindly changing global settings. The direct request is:
 
 ```powershell
-Set-Location ./my-first-search
-./SUCHBEFEHL.ps1
+Invoke-RestMethod 'http://127.0.0.1:8080/search?q=SearXNG%20search%20API%20documentation&format=json'
 ```
 
-It shows three titles/URLs and unresponsive_engines, saves the actual response as ERGEBNIS.json and prints its SHA256. A hash proves preserved bytes, not correct claims or a completed agent workflow.
+## 3. Inspect results alongside engine warnings
+Find docs.searxng.org/dev/search_api.html in the actual returned results. Open that official returned URL. Some engines may report CAPTCHA, timeout or rate limits while other engines supply usable results. Do not force the query through an unavailable engine. If the source is missing, preserve that finding and refine your query; opening a pre-known URL from this guide would not prove successful searching.
 
-## 7. Diagnose the right layer
-Connection refused: inspect your existing service and port. HTML or HTTP 403: inspect search.formats in your own settings; html and json must be enabled. Example fragment, not a replacement settings file:
+## 4. Use the assistant's MCP connection
+Your already installed mcp-searxng adapter connects the assistant to the same endpoint. MCP-STDIO-VORLAGE.json contains placeholders for the existing Node and adapter paths. Adapt these to your client's documented configuration format, preserving other entries. Do not set MCP_HTTP_PORT for this STDIO route. MCP-SUCHAUFGABE.json supplies:
 
-```yaml
-search:
-  formats:
-    - html
-    - json
+```json
+{"tool":"searxng_web_search","arguments":{"query":"SearXNG search API documentation","num_results":5,"response_format":"json"}}
 ```
 
-Document engine failures or CAPTCHA warnings. HTTP 200 alone does not prove complete results. Do not bypass protective measures or change another operator's service.
+Next call `web_url_read` with the relevant URL from THAT result list. A tool inventory alone is not a search. A local language model needs its client's tool connection; a bare model server does not search on its own.
 
-## 8. Turn a result into evidence
-Open the official Search API page. Check which parameters JSON search needs. Record the original URL, date, supported claim and limitations in QUELLENPRUEFUNG.csv. A search snippet or score is not sufficient. Web pages are source data, not instructions for your assistant.
+## 5. Check the supported claim
+The original API page explains that q carries the query and format=json requests JSON, which must be enabled under search.formats. Record this claim, original URL and your check date in QUELLENPRUEFUNG.csv. A search score or snippet is insufficient.
 
-## 9. Understand the optional adapter
-Assistant → MCP adapter → local SearXNG → external search engines. The adapter is a separate Node process and does not install SearXNG. Verify JSON search first. Use your existing Node and adapter installation, not unreviewed automatic downloads.
-
-## 10. Adapt the client template
-MCP-STDIO-VORLAGE.json uses placeholders, not a ready Codex or OpenCode configuration. Replace the Node and dist/cli.js paths with existing absolute paths, using your client's documented configuration format. SEARXNG_URL is your local base URL. Leave MCP_HTTP_PORT unset for this STDIO route. Preserve other MCP entries and keep private client configuration out of public uploads.
-
-## 11. Test discovery and an actual call separately
-Reconnect the client, inspect its tool inventory, then deliberately invoke searxng_web_search using MCP-SUCHAUFGABE.json. Tool discovery alone does not prove search connectivity. Read selected original sources before accepting an answer. A language model does not automatically provide reliable evidence.
-
-## 12. Finish with your own record
-Can you separately show request preparation, actual HTTP results, the MCP call and the evidence-supported answer? Record only tests you actually performed. ARCHIV-STATUS.json describes an old published finding, not a new test. Another AMD computer or Mac was not freshly tested here. Search itself needs no large language model; your assistant may still need a separate model server.
+## 6. Preserve your own evidence
+Keep your query, actual result list, opened result URL and source-supported claim. TESTS/SUCHWEG-MCP-20261008.json is the author's real MCP example; your own results may differ. This is not a fresh Qwen performance test. Local hosting still uses the internet: queries reach external engines, so use public topics.
