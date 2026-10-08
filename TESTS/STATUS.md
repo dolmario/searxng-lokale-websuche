@@ -1,9 +1,7 @@
-# Actual connector check — 2026-10-07
+# Actual search evidence, 8 October 2026
 
-An existing Codex MCP connection completed one public query, `site:docs.searxng.org search api`, requesting only three results. All three were outside the requested documentation domain: search.ch and two Google pages. Four engines reported rate limits, CAPTCHA or parsing errors. No protective measure was bypassed.
+The existing MCP connector returned the official SearXNG Search API page for `SearXNG search API documentation`. The returned URL was subsequently opened through `web_url_read`; the page supports the explanation of q, format=json and enabled search formats. No direct pre-known URL was substituted for finding the source. A separate query `Python documentation` returned docs.python.org and its tutorial; the tutorial result was also opened.
 
-**The tool call worked; the source-finding goal failed.** The highest result score was 1 and still did not support our documentation question. Do not turn this into a successful search or installation claim. The full returned response and exact scope are retained in SUCHTEST-MCP-20261007.json.
+Default engine selection succeeded. Earlier explicit Google/Bing and Brave queries returned no usable results. Some default engines still reported timeout/CAPTCHA/rate-limit warnings while other engines supplied the correct source. Therefore a warning is not proof that the entire search service fails, and the presence of a result is not proof of a correct answer.
 
-The published preparation-only helper remains separate: it was tested offline, and its generated HTTP request was not run in this check. No new assistant installation, OpenCode connection, model inference or full agent answer was tested. The official documentation URLs in QUELLEN.md were reviewed directly; they were not found in this limited connector result.
-
-Deutsch: Der MCP-Aufruf lieferte eine echte Antwort, aber keinen passenden Beleg. Prüfe bei jedem Treffer Domain und Inhalt, dokumentiere Engine-Fehler und behandle einen Suchscore nicht als Wahrheitsnachweis. Die manuelle HTTP-Übung und dein eigener Client-Aufruf bleiben getrennte Schritte.
+The earlier failed test remains in SUCHTEST-MCP-20261007.json. No fresh installation, server restart, universal search reliability or new local Qwen inference is claimed. This is a real assistant MCP search and source-read demonstration.

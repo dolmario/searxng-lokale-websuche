@@ -1,7 +1,7 @@
 param(
  [Parameter(Mandatory=$true)][string]$OutputDirectory,
  [string]$BaseUrl='http://127.0.0.1:8080',
- [string]$Query='SearXNG search API documentation'
+ [string]$Query='site:docs.searxng.org search api'
 )
 $ErrorActionPreference='Stop'
 $taskUri=[uri]$BaseUrl

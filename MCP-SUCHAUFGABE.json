@@ -1,6 +1,12 @@
 {
   "tool": "searxng_web_search",
   "arguments": {
-    "query": "site:docs.searxng.org search api"
+    "query": "SearXNG search API documentation",
+    "num_results": 5,
+    "response_format": "json"
+  },
+  "follow_up": {
+    "tool": "web_url_read",
+    "url_from_search_results": "https://docs.searxng.org/dev/search_api.html"
   }
 }
