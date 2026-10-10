@@ -1,9 +1,9 @@
 {
   "repo": "searxng-lokale-websuche",
-  "created": "2026-10-10T22:54:48.408189+02:00",
+  "created": "2026-10-10T23:34:03.507536+02:00",
   "zip": "C:\\Users\\JT\\Desktop\\DOLMARIO-NACHT-EN-20261010\\repos\\searxng-lokale-websuche\\downloads\\PRACTICE-KIT.zip",
-  "sha256": "245c9891e100f7ba00b49e9e0976f7583000b607b0b84f9e37c302d029cff845",
-  "bytes": 30503,
+  "sha256": "ff05daac6cc9596af4ac4670a75ce6c93dea718013995f3eaa84c4aae92b2842",
+  "bytes": 30855,
   "zip_crc_passed": true,
   "all_member_sha256_passed": true,
   "members": [
@@ -64,8 +64,8 @@
     },
     {
       "path": "DE/WINDOWS-PRAXIS.md",
-      "sha256": "b4da694791a17e13d2786af38f926438a6e116e05b2229511fca1c525d4f5fb1",
-      "bytes": 5362
+      "sha256": "d3075210553e3201fa902d29facdf99eafe734e1bc11aa908bd15577cad34066",
+      "bytes": 5749
     },
     {
       "path": "EN/START.md",
@@ -74,13 +74,13 @@
     },
     {
       "path": "EN/WINDOWS-PRACTICE.md",
-      "sha256": "46660c6d512fcb63a554796150b801ebb2af2dc65d77a1d2b0ac31e8c7f93e23",
-      "bytes": 3255
+      "sha256": "9664bf2ae0522d6e119a4e27639f22b468f25facdb6a5f0735148ac2aac957c5",
+      "bytes": 3621
     },
     {
       "path": "install_windows.py",
-      "sha256": "d95a574cef58fc68ebb7da56c380a9dae0ea766534265e8a72c9e086f6d1acbd",
-      "bytes": 7110
+      "sha256": "9aac3099105a1d0a6d6320a12938fcb3a563bb8b66f301e4dd59011dc5e53645",
+      "bytes": 7439
     },
     {
       "path": "LIZENZ.txt",

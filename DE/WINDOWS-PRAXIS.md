@@ -63,3 +63,5 @@ npm install --prefix .\MEIN-MCP --no-audit --no-fund mcp-searxng@2.1.0
 Der frische Adapter meldete `searxng_web_search`, `searxng_search_suggestions`, `searxng_instance_info` und `web_url_read`. Tatsächlich geprüft: `searxng_web_search` mit `SearXNG search API documentation` → URL aus dieser Antwort → `web_url_read` mit dieser URL. Der Leser lieferte den Originaltext der Search-API-Seite. Die Prüfung verwendete unsere bestehende Suche auf Port 8080; für deine neue Übungsinstanz ist 18080 einzusetzen.
 
 Die installierte Übungsinstanz wurde nach der Aufnahme wieder beendet. Sie startet nicht automatisch im Hintergrund.
+
+Der Installer normalisiert auch die Pfade im Verzeichnis der statischen Dateien. Dadurch funktionieren die CSS- und JavaScript-Adressen unter Windows. Die korrigierte Fassung wurde in einem neuen Ordner installiert und mit echter Browser-Suche, dem Klick zur Originalquelle und HTTP-200-Antworten der Dateien geprüft.

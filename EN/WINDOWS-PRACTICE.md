@@ -57,3 +57,5 @@ The fresh adapter exposed `searxng_web_search`, `searxng_search_suggestions`, `s
 Our first search returned 500 although the start page worked. Windows template paths contained backslashes. The installer now applies `result_templates.add(f.replace(os.sep, "/"))` to the pinned source, records its before/after hashes, and refuses an unexpected source layout. After the fix, browser and JSON searches worked.
 
 Connection error: check the running terminal and port. JSON 403: check `search.formats`. Engine CAPTCHA/rate-limit messages are retained alongside usable results. Other computers can differ in setup and timings.
+
+The installer also normalizes the static asset manifest to forward slashes. This makes the generated CSS and JavaScript URLs resolve on Windows. The corrected revision was installed in a new folder and checked with actual browser search, original-source navigation and HTTP 200 responses for its assets.

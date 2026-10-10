@@ -77,6 +77,10 @@ def install(root, port):
     if original_webutils.count('result_templates.add(f)') != 1:
         raise ValueError('Unexpected template enumeration; no Windows path patch')
     patched_webutils=original_webutils.replace('result_templates.add(f)','result_templates.add(f.replace(os.sep, "/"))',1)
+    static_old='file_list.append(str(f.relative_to(static_path)))'
+    if patched_webutils.count(static_old)!=1:
+        raise ValueError('Unexpected static asset enumeration; no Windows path patch')
+    patched_webutils=patched_webutils.replace(static_old,'file_list.append(f.relative_to(static_path).as_posix())',1)
     webutils.write_text(patched_webutils,encoding='utf-8')
     run([sys.executable,'-m','venv',str(root/'.venv')],root,log)
     python=root/'.venv'/'Scripts'/'python.exe'
@@ -96,7 +100,7 @@ def install(root, port):
               'service_started':False,'omitted_linux_service_template_links':skipped_linux_templates,
               'windows_patch':{'file':'searx/valkeydb.py','before_sha256':hashlib.sha256(original.encode()).hexdigest(),
               'after_sha256':hashlib.sha256(patchfile.read_bytes()).hexdigest()},
-              'windows_template_patch':{'file':'searx/webutils.py','before_sha256':hashlib.sha256(original_webutils.encode()).hexdigest(),
+              'windows_template_and_static_patch':{'file':'searx/webutils.py','before_sha256':hashlib.sha256(original_webutils.encode()).hexdigest(),
               'after_sha256':hashlib.sha256(webutils.read_bytes()).hexdigest()},'installation_commands_passed':True,
               'patch_hash_basis':'actual persisted bytes, including Windows line endings'}
     (root/'INSTALLATION.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
