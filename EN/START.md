@@ -19,6 +19,28 @@ The query is `SearXNG search API documentation`. The script shows result titles/
 Invoke-RestMethod 'http://127.0.0.1:8080/search?q=SearXNG%20search%20API%20documentation&format=json'
 ```
 
+The JSON response has this shape (shortened; fields of the SearXNG Search API):
+
+```json
+{
+  "query": "SearXNG search API documentation",
+  "results": [
+    {"title": "...", "url": "https://docs.searxng.org/dev/search_api.html", "content": "...", "engine": "duckduckgo"}
+  ],
+  "unresponsive_engines": [["brave", "too many requests"], ["qwant", "CAPTCHA"]]
+}
+```
+
+Pull the result URLs out of the saved file:
+
+```powershell
+$r = Get-Content ./my-search-result.json -Raw | ConvertFrom-Json
+$r.results | Select-Object -First 5 title, url, engine
+$r.results | Where-Object url -like '*docs.searxng.org/dev/search_api*' | Select-Object -First 1 url
+```
+
+In our run on 8 October the official page `https://docs.searxng.org/dev/search_api.html` came from the engines `google cse` and `duckduckgo`; `arxiv` (timeout), `brave` (too many requests), `qwant` and `startpage` (CAPTCHA) reported warnings. Your result may differ.
+
 ## 3. Inspect results alongside engine warnings
 Find docs.searxng.org/dev/search_api.html in the actual returned results. Open that official returned URL. Some engines may report CAPTCHA, timeout or rate limits while other engines supply usable results. Do not force the query through an unavailable engine. If the source is missing, preserve that finding and refine your query; opening a pre-known URL from this guide would not prove successful searching.
 
@@ -29,10 +51,23 @@ Your already installed mcp-searxng adapter connects the assistant to the same en
 {"tool":"searxng_web_search","arguments":{"query":"SearXNG search API documentation","num_results":5,"response_format":"json"}}
 ```
 
-Next call `web_url_read` with the relevant URL from THAT result list. A tool inventory alone is not a search. A local language model needs its client's tool connection; a bare model server does not search on its own.
+Next call `web_url_read` with the relevant URL from THAT result list:
+
+```json
+{"tool":"web_url_read","arguments":{"url":"https://docs.searxng.org/dev/search_api.html"}}
+```
+
+(The URL here comes from our run; use the one from your list.) A tool inventory alone is not a search. A local language model needs its client's tool connection; a bare model server does not search on its own.
 
 ## 5. Check the supported claim
-The original API page explains that q carries the query and format=json requests JSON, which must be enabled under search.formats. Record this claim, original URL and your check date in QUELLENPRUEFUNG.csv. A search score or snippet is insufficient.
+The original API page explains that q carries the query and format=json requests JSON, which must be enabled under search.formats. Record this claim, original URL and your check date in QUELLENPRUEFUNG.csv, for example:
+
+```text
+date,query,original_url,source_date,claim,source_supports_claim,limitations
+2026-10-10,SearXNG search API documentation,https://docs.searxng.org/dev/search_api.html,,"q = query; format=json returns JSON if json is enabled in search.formats",yes,"brave/qwant reported warnings; other engines returned results"
+```
+
+A search score or snippet is insufficient; the claim must appear on the opened page.
 
 ## 6. Preserve your own evidence
-Keep your query, actual result list, opened result URL and source-supported claim. TESTS/SUCHWEG-MCP-20261008.json is the author's real MCP example; your own results may differ. This is not a fresh Qwen performance test. Local hosting still uses the internet: queries reach external engines, so use public topics.
+Keep your query, saved result list (`my-search-result.json`), opened result URL and source-supported claim. TESTS/SUCHWEG-MCP-20261008.json is the author's real MCP example; your own results may differ. This is not a fresh Qwen performance test. Local hosting still uses the internet: queries reach external engines, so use public topics.
