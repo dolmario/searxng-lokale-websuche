@@ -1,0 +1,152 @@
+{
+  "repo": "searxng-lokale-websuche",
+  "created": "2026-10-10T23:34:03.507536+02:00",
+  "zip": "C:\\Users\\JT\\Desktop\\DOLMARIO-NACHT-EN-20261010\\repos\\searxng-lokale-websuche\\downloads\\PRACTICE-KIT.zip",
+  "sha256": "ff05daac6cc9596af4ac4670a75ce6c93dea718013995f3eaa84c4aae92b2842",
+  "bytes": 30855,
+  "zip_crc_passed": true,
+  "all_member_sha256_passed": true,
+  "members": [
+    {
+      "path": ".gitignore",
+      "sha256": "d82fed7e36792eadb4d5a569477448cfbad9e68ee7efaa4d5653f8bc8978251c",
+      "bytes": 34
+    },
+    {
+      "path": "ARCHIV/README-INITIAL.md",
+      "sha256": "8a87a6231aadf7725ca8cafbf02a8cd7234d368c8183790b53a80abfb212d693",
+      "bytes": 154
+    },
+    {
+      "path": "ARCHIV/README-KIT-V1.md",
+      "sha256": "de8fbb0cb4ba0dc4d0781ce48e00f59cbc290cfa65b05cd995b539833e9e6e52",
+      "bytes": 792
+    },
+    {
+      "path": "ARCHIV/VOR-KORREKTUR-20261008/DE/START.md",
+      "sha256": "e030ce75017a5ab73aabd044bfd3691b4e0f45c3c0412632087031ddefce80fe",
+      "bytes": 4872
+    },
+    {
+      "path": "ARCHIV/VOR-KORREKTUR-20261008/EN/START.md",
+      "sha256": "672ea9ce2c6e36d186cd4f0f4287b6e2b172818358b223356dc110e6678d679d",
+      "bytes": 4360
+    },
+    {
+      "path": "ARCHIV/VOR-KORREKTUR-20261008/MCP-SUCHAUFGABE.json",
+      "sha256": "79102b73372f7e79567ef5b2cc7404c1b4cce973cc0c8f846824425936e299dc",
+      "bytes": 111
+    },
+    {
+      "path": "ARCHIV/VOR-KORREKTUR-20261008/README.md",
+      "sha256": "ae17acb6f76e021a2635d0672a0d765be72394ae41103d6d27ea6e81ad61c7a5",
+      "bytes": 1068
+    },
+    {
+      "path": "ARCHIV/VOR-KORREKTUR-20261008/TESTS/STATUS.md",
+      "sha256": "a6638adaf3c8960b09751544ba298b4e12877fa04f225edd66aeae96de44b2f0",
+      "bytes": 1322
+    },
+    {
+      "path": "ARCHIV/VOR-KORREKTUR-20261008/VORBEREITEN-WEBSUCHE.ps1",
+      "sha256": "8ff9ca181304a3df8e5ed2ece72948dbad24ca48a7722a8815d44dd46420dfde",
+      "bytes": 1962
+    },
+    {
+      "path": "ARCHIV-STATUS.json",
+      "sha256": "ab2e1c966aedda089da48ecfda8bc01fae958a9e036a47ef1ac5ac1653a3a423",
+      "bytes": 582
+    },
+    {
+      "path": "DE/START.md",
+      "sha256": "2c8f70ab55d987065ece8f2a2e5e0ffb8741a936a34ca72bad2084714775c060",
+      "bytes": 5143
+    },
+    {
+      "path": "DE/WINDOWS-PRAXIS.md",
+      "sha256": "d3075210553e3201fa902d29facdf99eafe734e1bc11aa908bd15577cad34066",
+      "bytes": 5749
+    },
+    {
+      "path": "EN/START.md",
+      "sha256": "4fa3cec6ae9e94742063b78da2a3d8c1312d8af2433621d79851e446f9ff68ce",
+      "bytes": 4703
+    },
+    {
+      "path": "EN/WINDOWS-PRACTICE.md",
+      "sha256": "9664bf2ae0522d6e119a4e27639f22b468f25facdb6a5f0735148ac2aac957c5",
+      "bytes": 3621
+    },
+    {
+      "path": "install_windows.py",
+      "sha256": "9aac3099105a1d0a6d6320a12938fcb3a563bb8b66f301e4dd59011dc5e53645",
+      "bytes": 7439
+    },
+    {
+      "path": "LIZENZ.txt",
+      "sha256": "1c2cb9318d979fc43cc056da8d06d888ef3ed2480cc6c2a3694a5a64bd80a900",
+      "bytes": 543
+    },
+    {
+      "path": "MCP-STDIO-VORLAGE.json",
+      "sha256": "b1959478f301c234044bc89a8f8e939bd5496914390bfac8f4d542c11c198fe2",
+      "bytes": 262
+    },
+    {
+      "path": "MCP-SUCHAUFGABE.json",
+      "sha256": "c4183b92628cc0ea24f351fdc2368aa4cd702ce1be51b56d91be41ee5202e88e",
+      "bytes": 298
+    },
+    {
+      "path": "PAKETSTATUS.json",
+      "sha256": "2c69324796925955842e797d4a356646649cccb5724d12678c19d51ded00d3e1",
+      "bytes": 308
+    },
+    {
+      "path": "QUELLEN.md",
+      "sha256": "67a4be42e208f894480812e923f37593180fdac40ead5713440cd5479c6bf4dd",
+      "bytes": 1044
+    },
+    {
+      "path": "QUELLENPRUEFUNG.csv",
+      "sha256": "4953c2d394ef0922621a95195efcee3185cad56f0c63b7599c00d0996cee3ff2",
+      "bytes": 77
+    },
+    {
+      "path": "README.md",
+      "sha256": "529aa96073a10acb828527fda1725530befd5ce16f2a9915fc28cd0c7736adbb",
+      "bytes": 2028
+    },
+    {
+      "path": "suchprobe.py",
+      "sha256": "fba370ad8775a04ed302b12a3885ebcbbab28dc490e4f7336573e786b507ddbd",
+      "bytes": 1836
+    },
+    {
+      "path": "TEST-WEBSUCHE.ps1",
+      "sha256": "a6f671f388b55dcab545b8bd75e705a8146180aa46e29988b1f027b8aded0132",
+      "bytes": 1767
+    },
+    {
+      "path": "TESTS/STATUS.md",
+      "sha256": "a0ad239ecafa8c10cf8bac7ab7e6c00f9464fe4ca64a09880f13ed9e8d8d7399",
+      "bytes": 1097
+    },
+    {
+      "path": "TESTS/SUCHTEST-MCP-20261007.json",
+      "sha256": "6a264532a7c2be8b2f0d73883e73f45fd90d7f188f026f5bbf89176cf92ebeb8",
+      "bytes": 3511
+    },
+    {
+      "path": "TESTS/SUCHWEG-MCP-20261008.json",
+      "sha256": "77f5b2487707c6606c51b66dc687c26b6a720ee45d9d30a3358554f0015d7792",
+      "bytes": 1030
+    },
+    {
+      "path": "VORBEREITEN-WEBSUCHE.ps1",
+      "sha256": "ed536f4aab25a3b4f065dbf69d4b57b1e0efb7308b0972f8cf3f739f531777ef",
+      "bytes": 1962
+    }
+  ],
+  "legacy_zips_preserved": true
+}

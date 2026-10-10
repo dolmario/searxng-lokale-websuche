@@ -1,0 +1,8 @@
+{
+  "status": "tested_companion_revision",
+  "audio_language": "en",
+  "subtitle_language": "de",
+  "published_to_youtube": false,
+  "complete_film_listening": false,
+  "tested": "Fresh isolated Python 3.11 installation, Windows template fix, actual browser/JSON search and fresh MCP search->read"
+}
